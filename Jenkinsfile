@@ -18,7 +18,6 @@ pipeline {
                 echo 'Unit tests starting'
                 sh 'ls'
                 sh 'cd mars_rover; python -m unittest unit_tests.test_rovers'
-                junit '**/target/*.xml'
             }
         }
         stage('Regression Test'){
