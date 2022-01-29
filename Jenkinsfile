@@ -4,9 +4,15 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
-        stage('Build') {
+        stage('Code Checkout') {
             steps {
-                echo 'Hello World'
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: '*/master']], 
+                    userRemoteConfigs: [[url: 'https://github.com/Dogsocks/Mars-Rovers-Site.git']]
+                ])
+            }
+        }
             }
         }
         stage('Unit Test'){
