@@ -15,8 +15,8 @@ pipeline {
         }
         stage('Unit Test'){
             steps {
-                echo 'Hello World'
-                sh 'make check || true'
+                echo 'Unit tests starting'
+                sh 'python -m unittest unit_tests.test_rovers'
                 junit '**/target/*.xml'
             }
         }
