@@ -16,6 +16,8 @@ pipeline {
         stage('Unit Test'){
             steps {
                 echo 'Hello World'
+                sh 'make check || true'
+                junit '**/target/*.xml'
             }
         }
         stage('Regression Test'){
