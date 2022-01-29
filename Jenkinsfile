@@ -14,7 +14,6 @@ pipeline {
             }
         }
             }
-        }
         stage('Unit Test'){
             steps {
                 echo 'Hello World'
