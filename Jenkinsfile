@@ -16,7 +16,8 @@ pipeline {
         stage('Unit Test'){
             steps {
                 echo 'Unit tests starting'
-                sh 'cd /mars_rover/'
+                sh 'ls'
+                sh 'cd mars_rover/'
                 sh 'python -m unittest unit_tests.test_rovers'
                 junit '**/target/*.xml'
             }
