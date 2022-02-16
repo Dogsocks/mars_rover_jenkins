@@ -22,7 +22,12 @@ pipeline {
         }
         stage('Regression Test'){
             steps {
-                echo 'Hello World'
+                sh script: '''
+                cd Regression_testing/features
+                ls
+                python behave mars_rover_regression.feature
+                '''
+
             }
         }
         stage('Deploy') {
