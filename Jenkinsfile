@@ -23,7 +23,7 @@ pipeline {
         stage('Regression Test'){
             steps {
                 sh script: '''
-                cd Regression_testing/features; python behave mars_rover_regression.feature
+                cd Regression_testing/features; python behave .\mars_rover_regression.feature
                 '''
 
             }
