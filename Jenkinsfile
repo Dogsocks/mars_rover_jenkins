@@ -20,14 +20,6 @@ pipeline {
                 sh 'cd mars_rover; python -m unittest unit_tests.test_rovers'
             }
         }
-        stage('Regression Test'){
-            steps {
-                sh script: '''
-                cd Regression_testing/features; python behave mars_rover_regression.feature
-                '''
-
-            }
-        }
         stage('Deploy') {
             steps {
                 echo 'make publish'
