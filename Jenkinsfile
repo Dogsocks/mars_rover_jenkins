@@ -1,5 +1,10 @@
 pipeline {
     agent any
+	
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred-sho')
+	}	
+	
     options {
         skipStagesAfterUnstable()
     }
@@ -13,6 +18,7 @@ pipeline {
                 ])
             }
         }
+		
         stage('Unit Test'){
             steps {
                 echo 'Unit tests starting'
@@ -20,10 +26,23 @@ pipeline {
                 sh 'cd mars_rover; python -m unittest unit_tests.test_rovers'
             }
         }
-        stage('Deploy') {
+		
+        stage('Build Docker Image') {
             steps {
-                echo 'make publish'
+                sh 'docker build -t dogsocks/mars_rover:latest .'
+            }
+        }
+		
+        stage('Mail to Dockerhub') {
+            steps {
+				sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin | docker push docker pull dogsocks/mars_rover:latest'
+
             }
         }
     }
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
 }
