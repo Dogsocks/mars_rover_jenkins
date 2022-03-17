@@ -2,7 +2,7 @@ pipeline {
     agent any
 	
 	environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred-sho')
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
 	}	
 	
     options {
