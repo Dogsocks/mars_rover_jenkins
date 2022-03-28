@@ -29,7 +29,7 @@ pipeline {
 		
         stage('Build Docker Image') {
             steps {
-                sh 'docker buildx build -t dogsocks/mars_rover:latest . --platform linux/amd64'
+                sh 'docker build -t dogsocks/mars_rover:latest .'
             }
         }
 		
