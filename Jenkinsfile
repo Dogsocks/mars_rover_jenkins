@@ -29,13 +29,13 @@ pipeline {
 		
         stage('Build Docker Image') {
             steps {
-                sh 'docker buildx build --platform=linux/amd64 -t dogsocks/mars_rover:latest .'
+                sh 'docker build -t dogsocks/mars_rover:latest .'
             }
         }
 		
         stage('Mail to Dockerhub') {
             steps {
-				sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin | docker push docker pull dogsocks/mars_rover:latest'
+				sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin | docker push dogsocks/mars_rover:latest'
 
             }
         }
