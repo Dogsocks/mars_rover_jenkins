@@ -35,7 +35,7 @@ pipeline {
 		
         stage('Mail to Dockerhub') {
             steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -S -u $DOCKERHUB_CREDENTIALS_USR --password-stdin | docker push dogsocks/mars_rover:latest'
+				sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW | docker push dogsocks/mars_rover:latest'
 
             }
         }
