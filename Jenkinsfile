@@ -3,7 +3,7 @@ pipeline {
 	
 	environment {
 		registry = "dogsocks/mars_rover"
-        	registryCredential = 'dockerhub_id'
+        	registryCredential = 'dockerhub'
         	dockerImage = ''
 	}	
 	
