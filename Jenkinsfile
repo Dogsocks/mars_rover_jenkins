@@ -2,7 +2,9 @@ pipeline {
     agent any
 	
 	environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+		registry = "dogsocks/mars_rover"
+        	registryCredential = 'dockerhub_id'
+        	dockerImage = ''
 	}	
 	
     options {
@@ -29,13 +31,19 @@ pipeline {
 		
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t dogsocks/mars_rover:latest .'
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                }
             }
         }
 		
         stage('Mail to Dockerhub') {
             steps {
-				sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW | docker push dogsocks/mars_rover:latest'
+                script {
+                    docker.withRegistry( '', registryCredential ){
+                        dockerImage.push()
+                    }
+                }
 
             }
         }
