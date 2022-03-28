@@ -23,7 +23,7 @@ pipeline {
             steps {
                 echo 'Unit tests starting'
                 sh 'ls'
-                sh 'cd mars_rover; python -m unittest unit_tests.test_rovers'
+                sh 'cd mars_rover; python3 -m unittest unit_tests.test_rovers'
             }
         }
 		
