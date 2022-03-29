@@ -39,6 +39,7 @@ pipeline {
 		
         stage('Mail to Dockerhub') {
             steps {
+		    echo 'Dockerhub push starting'
                 script {
                     docker.withRegistry( '', registryCredential ){
                         dockerImage.push()
